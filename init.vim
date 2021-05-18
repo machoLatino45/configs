@@ -6,15 +6,16 @@ source $HOME/.config/nvim/cocconfig.vim
 call plug#begin()
 Plug 'joshdick/onedark.vim' " a reasonable theme
 Plug 'scrooloose/nerdtree' " for the file system
-Plug 'maxmellon/vim-jsx-pretty' " for jsx
 Plug 'jiangmiao/auto-pairs' " just auto pairs
 Plug 'voldikss/vim-floaterm' " kind of an inner terminal/nerdtree thing
 Plug 'tpope/vim-surround'
 Plug 'https://github.com/mhartington/oceanic-next' " dark color scheme
-Plug 'arcticicestudio/nord-vim'
-Plug 'Yggdroot/indentLine'
-Plug 'neoclide/coc.nvim', {'branch':'release'}
+Plug 'arcticicestudio/nord-vim' "Color theme nord
+Plug 'Yggdroot/indentLine'  "Adds indent line
+Plug 'neoclide/coc.nvim', {'branch':'release'} "Conqueror of Completion
+Plug 'yuttie/comfortable-motion.vim'
 call plug#end()
+
 
 let g:deoplete#enable_at_startup = 1
 
@@ -122,6 +123,7 @@ set shortmess+=c
 if has("nvim-0.5.0") || has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
+
 else
   set signcolumn=yes
 endif
@@ -152,6 +154,7 @@ endif
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+map <F9> :make<space>run<cr>
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -261,3 +264,5 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>t
+
+map :Evim<cr> :edit<space>$MYVIMRC<cr>
