@@ -1,3 +1,8 @@
+" Prevent easy motion from causing problems to COC
+autocmd User EasyMotionPromptBegin silent! CocDisable
+autocmd User EasyMotionPromptEnd silent! CocEnable
+let g:coc_global_extensions = ['coc-tsserver','coc-sh','coc-rust-analyzer']
+
 " et internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8

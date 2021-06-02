@@ -2,27 +2,40 @@
 " also, tags
 source $HOME/.config/nvim/floaterm.vim
 source $HOME/.config/nvim/cocconfig.vim
-" most of this configuration is taken from http://github.com/amix/vimrc/blob/master/vimrcs/basic.vims
 call plug#begin()
+" most of this configuration is taken from http://github.com/amix/vimrc/blob/master/vimrcs/basic.vims
+Plug 'saltdotac/citylights.vim' " City lights theme
 Plug 'joshdick/onedark.vim' " a reasonable theme
-Plug 'scrooloose/nerdtree' " for the file system
-Plug 'jiangmiao/auto-pairs' " just auto pairs
-Plug 'voldikss/vim-floaterm' " kind of an inner terminal/nerdtree thing
-Plug 'tpope/vim-surround'
+Plug 'arcticicestudio/nord-vim' " Color theme nord
 Plug 'https://github.com/mhartington/oceanic-next' " dark color scheme
-Plug 'arcticicestudio/nord-vim' "Color theme nord
+Plug 'scrooloose/nerdtree' " for the file system
+Plug 'voldikss/vim-floaterm' " kind of an inner terminal/nerdtree thing
+Plug 'wellle/targets.vim' " adds extra text objects
+Plug 'jiangmiao/auto-pairs' " just auto pairs
+Plug 'tpope/vim-surround' " Vim surround, nothing to say here
 Plug 'Yggdroot/indentLine'  "Adds indent line
-Plug 'neoclide/coc.nvim', {'branch':'release'} "Conqueror of Completion
-Plug 'yuttie/comfortable-motion.vim'
+Plug '907th/vim-auto-save' " auto saves a file always I enter normal mode
+Plug 'easymotion/vim-easymotion' " Allows like easymotion. you know what it does
+Plug 'neoclide/coc.nvim', {'branch':'release'} " Conqueror of Completion
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+Plug 'jparise/vim-graphql'        " GraphQL syntax
+Plug 'cespare/vim-toml'           " TOML
 call plug#end()
 
+"
+" function a(arg1,arg2,arg5)
+" function a(arg1,arg2,arg5)
+"
+"
+"
 
 let g:deoplete#enable_at_startup = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Basic editor settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set nocompatible 		" disable compatibility with old-time vi
 set showmatch 			" show matching brackets 
 set ignorecase 			" case insensitive matching
@@ -39,13 +52,16 @@ set number              " add line number to relative line numbering
 set so=5                " number of lines that can be above or below the cursor"
 set ruler               " sets line and column number
 
-" let g:oceanic_next_terminal_itailc = 1
+" let g:oceanic_next_terminal_italic = 1
 " let g:oceanic_next_terminal_bold = 1
+let g:EasyMotion_keys='hklyuiopnm,qwertzxcvbasdgjf' " don't use semicolon as easymotion key
+let g:auto_save = 1 "enable auto save"
+
 "
 set termguicolors
 colorscheme OceanicNext
 
-" git solves this issue
+" git solves this issue. These are all settings that vim automatically enables
 set nobackup
 set nowb
 set noswapfile
@@ -53,21 +69,27 @@ set noswapfile
 set noerrorbells        " removes error bells"
 set novisualbell        " removes visual error bells"
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1 "To allow better colors that match the actual color themes"
+set nohlsearch " search results are not highlighted. I found it distracting"
 
-set clipboard=unnamedplus
+set clipboard =unnamedplus "allows for external clipboard to be used "
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remappings 
+"  Remappings 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:floaterm_wintype='split'
+let g:floaterm_height=0.6
+let g:floaterm_position='bottom'
+let g:autoclose =0
 
 
 let mapleader="ç"
-inoremap <leader> <C-w>
+inoremap ç <C-w>
 inoremap "ç ç
-
+nnoremap <leader>t :FloatermToggle<cr>
 nnoremap <leader>v <C-v>
-nnoremap <space> :FloatermToggle<cr>
 nnoremap <leader>rc :vsplit<Space>$MYVIMRC<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <C-j> <C-w>j
@@ -77,9 +99,11 @@ nnoremap <C-q> <C-w>q
 nnoremap <C-h> <C-w>h
 nnoremap <M-j> mz:m+<cr>`z
 nnoremap <M-k> mz:m-2<cr>`z
-nnoremap <expr> go IsOnLeftSideOfEquals()? "f=w" : "F=be"
-nnoremap <expr> dgo IsOnLeftSideOfEquals()? "_dt=" : "$dT="
-nnoremap <expr> cgo IsOnLeftSideOfEquals()? "_ct=" : "$cT="
+nnoremap <expr> dgo IsOnLeftSideOfEquals()? "_df=" : "F=lD "
+nnoremap <expr> go IsOnLeftSideOfEquals()? "f=w" : "F=b"
+nnoremap <expr> cgo IsOnLeftSideOfEquals()? "_cf=" : "F=lC "
+tnoremap <Esc> <C-\><C-n>
+
 
 function IsOnLeftSideOfEquals()
     let curline = getline('.')
@@ -91,178 +115,4 @@ function IsOnLeftSideOfEquals()
     return result 
 endfunction
     
-
-tnoremap <esc> <C-\><C-n>
-
-tnoremap <leader>q <C-\><C-n>:q<CR>
-set hidden
-filetype plugin indent on 	" allows auto-indenting depending on file type
- "Se internal encoding of vim, not needed on neovim, since coc.nvim using some
-" unicode characters in the file autoload/float.vim
-set encoding=utf-8
-
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-
-else
-  set signcolumn=yes
-endif
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-map <F9> :make<space>run<cr>
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>t
-
-map :Evim<cr> :edit<space>$MYVIMRC<cr>
+" let a = somefunction();
