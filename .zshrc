@@ -10,7 +10,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 export PATH="$HOME/.deno/bin:$PATH"
-export PATH="/home/giluis/.lua-language-server:$PATH"
+export PATH="/home/giluis/.lua-language-server/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 alias vi="nvim"
