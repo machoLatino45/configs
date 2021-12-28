@@ -1,4 +1,4 @@
-lua require('lua.init')
+lua require('plugins')
 
 let mapleader='ç'
 nnoremap <leader>v <C-v>
