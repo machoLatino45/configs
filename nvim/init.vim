@@ -1,7 +1,14 @@
-lua require('plugins')
-let mapleader='ç'
+lua require('lua.init')
 
+let mapleader='ç'
 nnoremap <leader>v <C-v>
+
+" Telescope Mappings
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
 nnoremap <C-q> <C-w>q
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
@@ -9,6 +16,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-l> <C-w>l
 nnoremap <leader>ec :vsplit $HOME/.config/.zshrc<CR>
 nnoremap <leader>ev :vsplit $HOME/.config/nvim/init.vim<CR>
+nnoremap <leader>n  :NvimTreeToggle<CR>
 
 set nocompatible 		" disable compatibility with old-time vi
 set showmatch 			" show matching brackets 
