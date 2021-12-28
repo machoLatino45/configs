@@ -6,9 +6,10 @@ require("toggleterm").setup{
             return vim.o.columns * 0.4
         end
     end,
-    open_mapping = [[<space>t]],   -- starts terminal in insert mode 
+    open_mapping = [[<leader>t]],   -- starts terminal in insert mode 
     start_in_insert = true,    -- starts terminal in insert mode 
 }
+
 function _G.set_terminal_keymaps()
   local opts = {noremap = true}
   vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
