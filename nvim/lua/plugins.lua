@@ -7,16 +7,26 @@ require('plugins.telescope')
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Packer can manage itself
+  use {
+      'lewis6991/impatient.nvim', 
+      } 
   use 'folke/tokyonight.nvim'
   use 'neovim/nvim-lspconfig'
   use 'ggandor/lightspeed.nvim'
   use 'wellle/targets.vim'
+  use 'dstein64/vim-startuptime'
   use 'tpope/vim-surround'
   use 'Pocco81/AutoSave.nvim'
   use 'akinsho/toggleterm.nvim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'neovim/nvim-lspconfig'
   use {'kyazdani42/nvim-tree.lua',requires={'kyazdani42/nvim-web-devicons'}}
-  use {'nvim-telescope/telescope.nvim',requires={'nvim-lua/plenary.nvim'}}
+  use {'nvim-telescope/telescope.nvim', event='VimEnter' ,requires={'nvim-lua/plenary.nvim'}}
+    use{ 
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
+  use 'nathom/filetype.nvim'
 end)
 
