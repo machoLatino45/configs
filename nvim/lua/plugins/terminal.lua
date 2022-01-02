@@ -3,11 +3,13 @@ require("toggleterm").setup{
         if term.direction == "horizontal" then
             return 15
         elseif term.direction == "vertical" then
-            return vim.o.columns * 0.4
+            return vim.o.columns * 0.3
         end
     end,
-    open_mapping = [[<leader>t]],   -- starts terminal in insert mode 
-    start_in_insert = true,    -- starts terminal in insert mode 
+    direction = "vertical",
+    insert_mappings = false,
+    open_mapping = [[çt]],
+    start_in_insert = true,
 }
 
 function _G.set_terminal_keymaps()
