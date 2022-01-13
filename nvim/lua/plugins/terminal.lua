@@ -7,10 +7,12 @@ require("toggleterm").setup{
         end
     end,
     direction = "vertical",
-    insert_mappings = false,
+    insert_mappings = true,
     open_mapping = [[çt]],
     start_in_insert = true,
 }
+
+
 
 function _G.set_terminal_keymaps()
   local opts = {noremap = true}
