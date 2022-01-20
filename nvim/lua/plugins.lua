@@ -4,15 +4,14 @@ require('plugins.treesitter')
 require('plugins.lsp')
 require('plugins.nvimtree')
 require('plugins.telescope')
+require('plugins.pounce')
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Packer can manage itself
-  use {
-      'lewis6991/impatient.nvim', 
-      } 
+  use 'lewis6991/impatient.nvim'
   use 'folke/tokyonight.nvim'
   use 'neovim/nvim-lspconfig'
-  use 'ggandor/lightspeed.nvim'
+  -- use 'ggandor/lightspeed.nvim'
   use 'wellle/targets.vim'
   use 'dstein64/vim-startuptime'
   use 'tpope/vim-surround'
@@ -27,6 +26,7 @@ return require('packer').startup(function(use)
             require('Comment').setup()
         end
     }
-  use 'nathom/filetype.nvim'
+  -- use 'nathom/filetype.nvim'
+  use 'rlane/pounce.nvim'
 end)
 
