@@ -5,12 +5,11 @@ chsh -s $(which zsh) # after this restart shell
 # Install ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
 
+
 # set up git credentials
 git config --global  user.name  "giluis"
 git config --global  user.email  "lupevibogil@gmail.com"
 
-# Clone config repo
-git clone https://github.com/giluis/configs.git
 
 # create symbolik  link
 ln - ~/.config/.zshrc .zshrcs
@@ -26,7 +25,8 @@ sudo mv ./nvim.appimage /usr/bin/nvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-#Install Ninja
+
+# Install Ninja
 sudo apt install ninja-build
 
 # Install c compiler
@@ -56,5 +56,9 @@ cd ../..
 ./3rd/luamake/luamake rebuild
 sudo mv ./bin/Linux/lua-language-server /usr/bin
 
+# Install Rust 
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-
+mkdir -p ~/.local/bin
+curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+chmod +x ~/.local/bin/rust-analyzer

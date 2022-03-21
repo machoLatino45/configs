@@ -80,15 +80,20 @@ _G.packer_plugins = {
     path = "/home/giluis/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
-  ["filetype.nvim"] = {
+  ["auto-pairs"] = {
     loaded = true,
-    path = "/home/giluis/.local/share/nvim/site/pack/packer/start/filetype.nvim",
-    url = "https://github.com/nathom/filetype.nvim"
+    path = "/home/giluis/.local/share/nvim/site/pack/packer/start/auto-pairs",
+    url = "https://github.com/jiangmiao/auto-pairs"
   },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/home/giluis/.local/share/nvim/site/pack/packer/start/impatient.nvim",
     url = "https://github.com/lewis6991/impatient.nvim"
+  },
+  ["lightspeed.nvim"] = {
+    loaded = true,
+    path = "/home/giluis/.local/share/nvim/site/pack/packer/start/lightspeed.nvim",
+    url = "https://github.com/ggandor/lightspeed.nvim"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -119,11 +124,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/giluis/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  ["pounce.nvim"] = {
-    loaded = true,
-    path = "/home/giluis/.local/share/nvim/site/pack/packer/start/pounce.nvim",
-    url = "https://github.com/rlane/pounce.nvim"
   },
   ["targets.vim"] = {
     loaded = true,
