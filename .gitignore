@@ -1,4 +1,5 @@
 nvm
 nvim/plugin/packer_compiled.lua
 nvim/lua/packer.nvim
+wslu
 
