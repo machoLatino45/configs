@@ -24,7 +24,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 opt.lazyredraw = true
-opt.hlsearch = true
+-- opt.hlsearch = false
 opt.tabstop=4
 opt.expandtab=true
 opt.shiftwidth=4

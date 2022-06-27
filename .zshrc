@@ -8,6 +8,8 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 git config --global core.editor "nvim"
+git config --global credential.helper store
+git config core.autocrlf false
 
 source $ZSH/oh-my-zsh.sh
 
@@ -23,10 +25,14 @@ alias estart="vi $HOME/.config/startup.sh"
 alias conf="cd $HOME/.config"
 alias restart="source $HOME/.zshrc"
 alias ghapi="cat ~/.ghapikey"
+alias bbtoken="cat ~/.bbtoken"
 alias luamake="/home/giluis/lua-language-server/3rd/luamake/luamake"
 alias python="python3"
 alias pip="pip3"
 alias dev="cd $HOME/dev"
+alias infor="cd $HOME/isep/infor"
+alias anadi="cd $HOME/isep/anadi"
+alias exp="explorer.exe ."
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -39,4 +45,6 @@ export NVM_DIR="$HOME/.config/nvm"
 if [ ! -d "$HOME/trash" ]; then
     mkdir $HOME/trash
 fi
+
+npm config set ignore-scripts true
 

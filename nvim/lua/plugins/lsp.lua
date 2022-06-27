@@ -33,8 +33,7 @@
     buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   end
 
-
-  vim.g.markdown_fenced_languages = {
+vim.g.markdown_fenced_languages = {
       "ts=typescript"
   }
   nvim_lsp.denols.setup{
@@ -57,12 +56,19 @@ nvim_lsp.sumneko_lua.setup {
   on_attach = on_attach,
   settings = {
       Lua = {
+          runtime = {
+              version = 'LuaJIT'
+          },
           diagnostics = {
               globals = {'vim'},
           },
-            workspace = {
+          workspace = {
               library = vim.api.nvim_get_runtime_file("",true),
+          },
+          telemetry = {
+              enable = false,
           }
+
       }
   },
 }
