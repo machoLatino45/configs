@@ -1,18 +1,24 @@
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
+
+require('plugins.lsp')
 require('plugins.autosave')
 require('plugins.terminal')
 require('plugins.treesitter')
 require('plugins.nvimtree')
-require('plugins.telescope')
--- require('plugins.pounce')
+require('plugins.telescopeconfig')
 require('plugins.lightspeed')
 require('plugins.devicons')
 require('plugins.replace')
 require('plugins.cmpconfig')
-require('plugins.lsp')
+
 
 return require('packer').startup(function(use)
-  use 'lewis6991/impatient.nvim'
   use 'wbthomason/packer.nvim' -- Packer can manage itself
+  use 'lewis6991/impatient.nvim'
   use 'nathom/filetype.nvim'
   use 'folke/tokyonight.nvim'
   use 'neovim/nvim-lspconfig'
@@ -36,7 +42,10 @@ return require('packer').startup(function(use)
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use {'kyazdani42/nvim-tree.lua',requires={'kyazdani42/nvim-web-devicons'}}
-  use {'nvim-telescope/telescope.nvim', event='VimEnter' ,requires={'nvim-lua/plenary.nvim'}}
+  use {
+    'nvim-telescope/telescope.nvim',
+     requires={'nvim-lua/plenary.nvim'}
+  }
   use 'romgrk/replace.vim'
   use{'numToStr/Comment.nvim',
         config = function()

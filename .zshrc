@@ -9,7 +9,7 @@ plugins=(git)
 
 git config --global core.editor "nvim"
 git config --global credential.helper store
-git config core.autocrlf false
+git config --global core.autocrlf false
 
 source $ZSH/oh-my-zsh.sh
 
