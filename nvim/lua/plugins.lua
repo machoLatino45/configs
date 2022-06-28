@@ -1,15 +1,15 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
+-- local fn = vim.fn
+-- local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+-- if fn.empty(fn.glob(install_path)) > 0 then
+--   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+-- end
 
+require('plugins.telescopeconfig')
 require('plugins.lsp')
 require('plugins.autosave')
 require('plugins.terminal')
 require('plugins.treesitter')
 require('plugins.nvimtree')
-require('plugins.telescopeconfig')
 require('plugins.lightspeed')
 require('plugins.devicons')
 require('plugins.replace')
