@@ -4,6 +4,6 @@ require("util")
 map('n','s','<Plug>Lightspeed_omni_s')
 
 require'lightspeed'.setup {
-    exit_after_idle_msecs = {unlabeled = 550, labeled = 550}
+    exit_after_idle_msecs = {unlabeled = 600, labeled = 650},
 }
 

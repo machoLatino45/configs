@@ -4,21 +4,12 @@
 --   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 -- end
 
-require('plugins.telescopeconfig')
-require('plugins.lsp')
-require('plugins.autosave')
-require('plugins.terminal')
-require('plugins.treesitter')
-require('plugins.nvimtree')
-require('plugins.lightspeed')
-require('plugins.devicons')
-require('plugins.replace')
-require('plugins.cmpconfig')
+require("telefig")
 
 
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim' -- Packer can manage itself
   use 'lewis6991/impatient.nvim'
+  use 'wbthomason/packer.nvim' -- Packer can manage itself
   use 'nathom/filetype.nvim'
   use 'folke/tokyonight.nvim'
   use 'neovim/nvim-lspconfig'
