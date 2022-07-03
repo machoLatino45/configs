@@ -9,7 +9,7 @@ plugins=(git)
 
 git config --global core.editor "nvim"
 git config --global credential.helper store
-git config --global core.autocrlf false
+git config --global core.autocrlf false # to avoid LF to CRLF conversion (messes up Neovim plugins)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -32,6 +32,7 @@ alias pip="pip3"
 alias dev="cd $HOME/dev"
 alias infor="cd $HOME/isep/infor"
 alias anadi="cd $HOME/isep/anadi"
+alias rcomp="cd $HOME/isep/rcomp"
 alias exp="explorer.exe ."
 
 export NVM_DIR="$HOME/.config/nvm"
