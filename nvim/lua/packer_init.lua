@@ -7,20 +7,17 @@ end
 require('plugins.telescopeconfig')
 require('plugins.lsp')
 require('plugins.autosave')
-require('plugins.terminal')
+-- require('plugins.terminal')
 require('plugins.treesitter')
-require('plugins.nvimtree')
 require('plugins.lightspeed')
 require('plugins.devicons')
 require('plugins.replace')
 require('plugins.cmpconfig')
 
-
-
 return require('packer').startup(function(use)
   use 'lewis6991/impatient.nvim'
-  use 'wbthomason/packer.nvim' -- Packer can manage itself
   use 'nathom/filetype.nvim'
+  use 'wbthomason/packer.nvim' -- Packer can manage itself
   use 'folke/tokyonight.nvim'
   use 'neovim/nvim-lspconfig'
   use 'ggandor/lightspeed.nvim'
@@ -28,7 +25,12 @@ return require('packer').startup(function(use)
   use 'dstein64/vim-startuptime'
   use 'tpope/vim-surround'
   use 'Pocco81/AutoSave.nvim'
-  use {'akinsho/toggleterm.nvim', tag = 'v1.*'}
+
+  use {'akinsho/toggleterm.nvim',
+       -- cmd={"ToggleTerm"},
+       config=function()require("plugins.terminal")end,
+       tag = 'v1.*'
+  }
 
   -- Completion
   use 'hrsh7th/cmp-buffer'
@@ -42,7 +44,11 @@ return require('packer').startup(function(use)
   use 'onsails/lspkind.nvim'
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use {'kyazdani42/nvim-tree.lua',requires={'kyazdani42/nvim-web-devicons'}}
+  use {'kyazdani42/nvim-tree.lua',
+       cmd = {"NvimTreeToggle"},
+       requires={'kyazdani42/nvim-web-devicons'},
+       config= function() require('plugins.nvimtree')end
+  }
   use {
     'nvim-telescope/telescope.nvim',
      requires={'nvim-lua/plenary.nvim'}

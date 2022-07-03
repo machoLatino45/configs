@@ -1,4 +1,4 @@
--- mapleader
+-- leader
 vim.g.mapleader='ç'
 
 -- General
@@ -9,8 +9,6 @@ keymap('n',"<C-k>","<C-w>k",{ noremap= true})
 keymap('n',"<C-h>","<C-w>h",{ noremap= true})
 keymap('n',"<C-j>","<C-w>j",{ noremap= true})
 keymap('n',"<C-l>","<C-w>l",{ noremap= true})
-keymap('n',"<leader>ec",":vsplit $HOME/.config/.zshrc<CR>",{ noremap= true})
-keymap('n',"<leader>ev",":vsplit $HOME/.config/nvim/init.vim<CR>",{ noremap= true})
 keymap('n',"<leader>n"," :NvimTreeToggle<CR>",{ noremap= true})
 
 
