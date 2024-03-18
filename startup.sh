@@ -5,13 +5,16 @@ chsh -s $(which zsh) # after this restart shell
 # Install ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
 
+# Create .config
+mkdir
 
 # set up git credentials
 git config --global  user.name  "giluis"
 git config --global  user.email  "lupevibogil@gmail.com"
 
 
-# create symbolik  link
+# create symbolik  link for .zshrc
+# Not very practical, perhaps calling it
 ln - ~/.config/.zshrc .zshrcs
 
 
